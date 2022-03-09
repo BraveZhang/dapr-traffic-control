@@ -1,0 +1,152 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core TrafficControlService (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/TrafficControlService/bin/Debug/net6.0/TrafficControlService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      },
+      "preLaunchTask": "daprd-debug",
+      "postDebugTask": "daprd-down"
+    },
+    {
+      "name": ".NET Core Launch (Simulation)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/Simulation/bin/Debug/net6.0/Simulation.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/Simulation",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Core Launch (VisualSimulation)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/VisualSimulation/bin/Debug/net6.0/VisualSimulation.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/VisualSimulation",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Core Launch (VehicleRegistrationService)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/VehicleRegistrationService/bin/Debug/net6.0/VehicleRegistrationService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/VehicleRegistrationService",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Core Launch (TrafficControlService)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/TrafficControlService/bin/Debug/net6.0/TrafficControlService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/TrafficControlService",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Core Launch (FineCollectionService)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/FineCollectionService/bin/Debug/net6.0/FineCollectionService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/FineCollectionService",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Dapr-VehicleRegistrationService",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/VehicleRegistrationService/bin/Debug/net6.0/VehicleRegistrationService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/VehicleRegistrationService",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "preLaunchTask": "daprd-debug-vehicleRegistrationService",
+      "postDebugTask": "daprd-down-vehicleRegistrationService"
+    },
+    {
+      "name": "Dapr-TrafficControlService",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/TrafficControlService/bin/Debug/net6.0/TrafficControlService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/TrafficControlService",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "preLaunchTask": "daprd-debug-trafficControlService",
+      "postDebugTask": "daprd-down-trafficControlService"
+    },
+    {
+      "name": "Dapr-FineCollectionService",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/FineCollectionService/bin/Debug/net6.0/FineCollectionService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/FineCollectionService",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "preLaunchTask": "daprd-debug-fineCollectionService",
+      "postDebugTask": "daprd-down-fineCollectionService"
+    },
+    {
+      "name": ".NET Core TrafficControlService (web) with Dapr",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "daprd-debug",
+      "program": "${workspaceFolder}/src/TrafficControlService/bin/Debug/net6.0/TrafficControlService.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      },
+      "postDebugTask": "daprd-down"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "DaprTrafficControl",
+      "configurations": [
+        "Dapr-VehicleRegistrationService",
+        ".NET Core TrafficControlService (web)",
+        "Dapr-FineCollectionService"
+      ],
+      "preLaunchTask": "build"
+    }
+  ]
+}

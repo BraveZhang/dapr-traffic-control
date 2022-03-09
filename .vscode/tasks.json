@@ -1,0 +1,123 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/Simulation/Simulation.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/src/Simulation/Simulation.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/src/Simulation/Simulation.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "appId": "app-VehicleRegistrationService",
+      "appPort": 6002,
+      "httpPort": 3602,
+      "grpcPort": 60002,
+      "metricsPort": 9092,
+      "label": "daprd-debug-vehicleRegistrationService",
+      "type": "daprd",
+      "componentsPath": "D:/Learning/dapr/dapr-traffic-control/src/dapr/components",
+      "config": "D:/Learning/dapr/dapr-traffic-control/src/dapr/config/config.yaml",
+      "dependsOn": "build"
+    },
+    {
+      "appId": "app-VehicleRegistrationService",
+      "label": "daprd-down-vehicleRegistrationService",
+      "type": "daprd-down"
+    },
+    {
+      "appId": "app-TrafficControlService",
+      "appPort": 6003,
+      "httpPort": 3603,
+      "grpcPort": 60003,
+      "metricsPort": 9093,
+      "label": "daprd-debug-trafficControlService",
+      "type": "daprd",
+      "componentsPath": "D:/Learning/dapr/dapr-traffic-control/src/dapr/components",
+      "config": "D:/Learning/dapr/dapr-traffic-control/src/dapr/config/config.yaml",
+      "dependsOn": "build"
+    },
+    {
+      "appId": "app-TrafficControlService",
+      "label": "daprd-down-trafficControlService",
+      "type": "daprd-down"
+    },
+    {
+      "appId": "app-FineCollectionService",
+      "appPort": 6001,
+      "httpPort": 3601,
+      "grpcPort": 60001,
+      "metricsPort": 9091,
+      "label": "daprd-debug-fineCollectionService",
+      "type": "daprd",
+      "componentsPath": "D:/Learning/dapr/dapr-traffic-control/src/dapr/components",
+      "config": "D:/Learning/dapr/dapr-traffic-control/src/dapr/config/config.yaml",
+      "dependsOn": "build"
+    },
+    {
+      "appId": "app-FineCollectionService",
+      "label": "daprd-down-fineCollectionService",
+      "type": "daprd-down"
+    },
+    {
+      "appId": "app-test",
+      "appPort": 6000,
+      "label": "daprd-debug",
+      "type": "daprd",
+      "httpPort": 3600,
+      "grpcPort": 60000,
+      "metricsPort": 9090,
+      "componentsPath": "D:/Learning/dapr/dapr-traffic-control/src/dapr/components",
+      "config": "D:/Learning/dapr/dapr-traffic-control/src/dapr/config/config.yaml",
+      "dependsOn": "build",
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": ".",
+            "file": 1,
+            "location": 2,
+            "message": 3
+          }
+        ],
+        "background": {
+          "beginsPattern": "^.*starting Dapr Runtime.*",
+          "endsPattern": "^.*waiting on port.*"
+        }
+      }
+    },
+    {
+      "appId": "app-test",
+      "label": "daprd-down",
+      "type": "daprd-down"
+    }
+  ]
+}
